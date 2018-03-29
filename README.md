@@ -14,7 +14,7 @@
 + Model Evaluation
 + Model Selection
 + Feature Selection
-+ Model Validation & Implementation *
++ Model Validation & Implementation 
 + Optimize Model *
 
 ### * -> Ongoing
