@@ -8,13 +8,13 @@
 + Day 4: ? *
 + Day 5: ? *
 
-## Predict Survival on the Titanic *
+## Predict Survival on the Titanic (Current Position: 562nd of 10590, **Top 6%**)
 + Clean Data
 + Feature Engineering
 + Model Evaluation
 + Model Selection
 + Feature Selection
-+ Model Validation & Implementation 
++ Model Validation & Implementation
 + Optimize Model *
 
 ### * -> Ongoing
