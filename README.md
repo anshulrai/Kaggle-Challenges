@@ -20,6 +20,10 @@ Current Position: 562nd of 10590, **Top 6%**
 
 ## TalkingData AdTracking Fraud Detection Challenge *
 + Setting up system to handle extremely huge data set
+  + Presetting the Data Types of columns
+  + Reading by chunk size
+  + Sampling rows
+  + Using Dask(?)*
 + Clean Data *
 + Feature Engineering *
 + Model Evaluation *
