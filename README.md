@@ -19,6 +19,17 @@ Current Position: 562nd of 10590, **Top 6%**
 + Optimize Model *
 
 ## TalkingData AdTracking Fraud Detection Challenge *
-+ Clean Data
++ Setting up system to handle extremely huge data set
++ Clean Data *
++ Feature Engineering *
++ Model Evaluation *
++ Model Selection *
++ Feature Selection *
++ Model Validation & Implementation *
++ Optimize Model *
 
 ### * Ongoing
+
+### Tutorials
++ Advanced Pandas
++ Data Visualization
