@@ -24,7 +24,7 @@ Current Position: 562nd of 10590, **Top 6%**
   + Reading by chunk size
   + Sampling rows
   + Using Dask(?)*
-+ Clean Data *
++ Clean Data 
 + Feature Engineering *
 + Model Evaluation *
 + Model Selection *
