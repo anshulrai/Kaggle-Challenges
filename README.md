@@ -9,7 +9,7 @@
 + Day 5: Inconsistent Data Entry
 
 ## Predict Survival on the Titanic
-Current Position: 562nd of 10590, **Top 6%**
+Current Position: 528th of 10590, **Top 5%**
 + Clean Data
 + Feature Engineering
 + Model Evaluation
@@ -24,8 +24,8 @@ Current Position: 562nd of 10590, **Top 6%**
   + Reading by chunk size
   + Sampling rows
   + Using Dask(?)*
-+ Clean Data 
-+ Feature Engineering *
++ Clean Data
++ Feature Engineering
 + Model Evaluation *
 + Model Selection *
 + Feature Selection *
