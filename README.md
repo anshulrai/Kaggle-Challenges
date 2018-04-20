@@ -19,6 +19,7 @@ Current Position: 528th of 10590, **Top 5%**
 + Optimize Model *
 
 ## TalkingData AdTracking Fraud Detection Challenge *
+Current Position: 447th of 3141, **Top 15%**
 + Setting up system to handle extremely huge data set
   + Presetting the Data Types of columns
   + Reading by chunk size
