@@ -33,6 +33,9 @@ Current Position: 447th of 3141, **Top 15%**
 + Model Validation & Implementation *
 + Optimize Model *
 
+## Avito Demand Prediction Challenge *
++ Exploratory Data Analysis *
+
 ### * Ongoing
 
 ### Tutorials
