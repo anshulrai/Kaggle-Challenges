@@ -18,8 +18,9 @@ Current Position: 528th of 10590, **Top 5%**
 + Model Validation & Implementation
 + Optimize Model *
 
-## TalkingData AdTracking Fraud Detection Challenge *
-Current Position: 447th of 3141, **Top 15%**
+## TalkingData AdTracking Fraud Detection Challenge 
+Best Position: 447th of 3141, **Top 15%**
+Final Position: 920th of 3967 **Top 24%**
 + Setting up system to handle extremely huge data set
   + Presetting the Data Types of columns
   + Reading by chunk size
@@ -27,13 +28,14 @@ Current Position: 447th of 3141, **Top 15%**
   + Using Dask(?)*
 + Clean Data
 + Feature Engineering
-+ Model Evaluation *
-+ Model Selection *
-+ Feature Selection *
-+ Model Validation & Implementation *
++ Model Evaluation
++ Model Selection
++ Feature Selection
++ Model Validation & Implementation
 + Optimize Model *
 
 ## Avito Demand Prediction Challenge *
++ Baseline Notebook *
 + Exploratory Data Analysis *
 
 ### * Ongoing
