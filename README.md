@@ -3,7 +3,7 @@
 ## TalkingData AdTracking Fraud Detection Challenge
 Best Position: 447th of 3141, **Top 15%**
 
-Final Position: 920th of 3967 **Top 24%**
+Final Position: 920th of 3967, **Top 24%**
 + Setting up system to handle extremely huge data set
   + Presetting the Data Types of columns
   + Reading by chunk size
