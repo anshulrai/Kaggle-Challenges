@@ -31,9 +31,14 @@ Current Position: 422nd of 11252, **Top 4%**
 + Model Validation & Implementation
 + Optimize Model *
 
-## Dog vs Cats (2013) *
+## Dog vs Cats (Kernels Edition, 2017) *
 + Handling Input
-+ Begin modelling *
++ Run Pre-trained model **(98.8+% accuracy)**
++ Check Distribution of Data
++ Implement learning rate check *
++ Data Augmentation to correct for minor misclassifications *
++ Differential Learning Rates *
++ Analyze results *
 
 ## 5 Day Data Cleaning Challenge
 + Day 1: Handle Missing Values
