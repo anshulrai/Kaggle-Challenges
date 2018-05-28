@@ -35,10 +35,10 @@ Current Position: 422nd of 11252, **Top 4%**
 + Handling Input
 + Run Pre-trained model **(98.8+% accuracy)**
 + Check Distribution of Data
-+ Implement learning rate check *
-+ Data Augmentation to correct for minor misclassifications *
-+ Differential Learning Rates *
-+ Analyze results *
++ Implement learning rate check
++ Data Augmentation to correct for minor misclassifications
++ Differential Learning Rates
++ Analyze results **(99.46452476572959 accuracy)**
 
 ## 5 Day Data Cleaning Challenge
 + Day 1: Handle Missing Values
