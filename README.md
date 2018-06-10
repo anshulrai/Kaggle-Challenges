@@ -18,7 +18,8 @@ Final Position: 920th of 3967, **Top 24%**
 + Optimize Model *
 
 ## Avito Demand Prediction Challenge *
-+ Baseline Notebook *
+Current Position: 293rd of 1649, **Top 18%**
++ Baseline Notebook 
 + Exploratory Data Analysis *
 
 ## Predict Survival on the Titanic
@@ -31,7 +32,7 @@ Current Position: 422nd of 11252, **Top 4%**
 + Model Validation & Implementation
 + Optimize Model *
 
-## Dog vs Cats (Kernels Edition, 2017) 
+## Dog vs Cats (Kernels Edition, 2017)
 + Handling Input
 + Run Pre-trained model **(98.8+% accuracy)**
 + Check Distribution of Data
