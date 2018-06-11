@@ -19,8 +19,10 @@ Final Position: 920th of 3967, **Top 24%**
 
 ## Avito Demand Prediction Challenge *
 Current Position: 293rd of 1649, **Top 18%**
-+ Baseline Notebook 
-+ Exploratory Data Analysis *
++ Baseline Notebook using SVM/Random Forests
++ Exploratory Data Analysis
++ Convert to Categorical and DateTime variables *
++ Build NN model *
 
 ## Predict Survival on the Titanic
 Current Position: 422nd of 11252, **Top 4%**
