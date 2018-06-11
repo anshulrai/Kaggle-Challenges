@@ -35,7 +35,7 @@ Current Position: 422nd of 11252, **Top 4%**
 + Optimize Model *
 
 ## Dog vs Cats (Kernels Edition, 2017)
-**Shared the highest score publicly available kernel** 
+**Shared the highest score [publicly available kernel](https://www.kaggle.com/anshulrai/using-fastai-in-kaggle-kernel)** 
 + Handling Input
 + Run Pre-trained model **(98.8+% accuracy)**
 + Check Distribution of Data
