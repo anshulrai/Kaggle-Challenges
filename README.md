@@ -35,7 +35,7 @@ Current Position: 422nd of 11252, **Top 4%**
 + Optimize Model *
 
 ## Dog vs Cats (Kernels Edition, 2017)
-**Shared the highest score [publicly available kernel](https://www.kaggle.com/anshulrai/using-fastai-in-kaggle-kernel)** 
+**Shared the highest score [publicly available kernel](https://www.kaggle.com/anshulrai/using-fastai-in-kaggle-kernel)**
 + Handling Input
 + Run Pre-trained model **(98.8+% accuracy)**
 + Check Distribution of Data
@@ -43,6 +43,9 @@ Current Position: 422nd of 11252, **Top 4%**
 + Data Augmentation to correct for minor misclassifications
 + Differential Learning Rates
 + Analyze results **(99.46452476572959 accuracy)**
+
+## Planet: Understanding the Amazon from Space
+**Private Leaderboard Score: 0.92979 (73rd/938), Top 8%**
 
 ## 5 Day Data Cleaning Challenge
 + Day 1: Handle Missing Values
