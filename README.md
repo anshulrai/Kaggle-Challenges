@@ -24,6 +24,12 @@ Current Position: 293rd of 1649, **Top 18%**
 + Convert to Categorical and DateTime variables *
 + Build NN model *
 
+## Home Credit Default Risk *
++ Exploratory Data Analysis
++ Join datasets *
++ Clean Data *
++ Run Baseline Model *
+
 ## Predict Survival on the Titanic
 Current Position: 422nd of 11252, **Top 4%**
 + Clean Data
@@ -35,7 +41,7 @@ Current Position: 422nd of 11252, **Top 4%**
 + Optimize Model *
 
 ## Dog vs Cats (Kernels Edition, 2017)
-**Shared the highest score [publicly available kernel](https://www.kaggle.com/anshulrai/using-fastai-in-kaggle-kernel)**
+**Shared the kernel with [highest publicly available score](https://www.kaggle.com/anshulrai/using-fastai-in-kaggle-kernel)**
 + Handling Input
 + Run Pre-trained model **(98.8+% accuracy)**
 + Check Distribution of Data
@@ -55,8 +61,8 @@ Current Position: 422nd of 11252, **Top 4%**
 + Day 4: Character Encodings
 + Day 5: Inconsistent Data Entry
 
-### * Ongoing
-
 ### Tutorials
 + Advanced Pandas
 + Data Visualization
+
+### * Ongoing
