@@ -1,5 +1,30 @@
 # Kaggle Challenges
 
+## TGS Salt Identification Challenge *
++ Exploratory Data Analysis *
+
+## Home Credit Default Risk (Won _Bronze_ medal)
+**Private Leaderboard Score: 0.79517 (542nd/7198), Top 8%**
+
+**Best Private Leaderboard Submission: 0.79674 (248th/7198), Top 4%**
++ Exploratory Data Analysis
++ Join datasets
++ Clean Data
++ Run Baseline Model
++ Feature Engineering
++ Data Pipelines
++ Train/Test Discriminator
++ Stacking
++ Ensembling
+
+## Avito Demand Prediction Challenge
+Current Position: 414rd of 1873, **Top 23%**
++ Baseline Notebook using SVM/Random Forests
++ Exploratory Data Analysis
++ Convert to Categorical and DateTime variables
++ Build NN model
++ Ensembling
+
 ## TalkingData AdTracking Fraud Detection Challenge
 Best Position: 447th of 3141, **Top 15%**
 
@@ -17,36 +42,8 @@ Final Position: 920th of 3967, **Top 24%**
 + Model Validation & Implementation
 + Optimize Model *
 
-## Avito Demand Prediction Challenge *
-Current Position: 293rd of 1649, **Top 18%**
-+ Baseline Notebook using SVM/Random Forests
-+ Exploratory Data Analysis
-+ Convert to Categorical and DateTime variables *
-+ Build NN model *
-
-## Home Credit Default Risk (Won **Bronze** medal)
-**Private Leaderboard Score: 0.79517 (542nd/7198), Top 8%**
-
-**Best Private Leaderboard Submission: 0.79674 (248th/7198), Top 4%**
-+ Exploratory Data Analysis
-+ Join datasets
-+ Clean Data
-+ Run Baseline Model
-+ Feature Engineering
-+ Data Pipelines
-+ Train/Test Discriminator
-+ Stacking
-+ Ensembling
-
-## Predict Survival on the Titanic
-Current Position: 422nd of 11252, **Top 4%**
-+ Clean Data
-+ Feature Engineering
-+ Model Evaluation
-+ Model Selection
-+ Feature Selection
-+ Model Validation & Implementation
-+ Optimize Model *
+## Planet: Understanding the Amazon from Space
+**Private Leaderboard Score: 0.92979 (73rd/938), Top 8%**
 
 ## Dog vs Cats (Kernels Edition, 2017)
 **Shared the kernel with [highest publicly available score](https://www.kaggle.com/anshulrai/using-fastai-in-kaggle-kernel)**
@@ -58,8 +55,15 @@ Current Position: 422nd of 11252, **Top 4%**
 + Differential Learning Rates
 + Analyze results **(99.46452476572959 accuracy)**
 
-## Planet: Understanding the Amazon from Space
-**Private Leaderboard Score: 0.92979 (73rd/938), Top 8%**
+## Predict Survival on the Titanic
+Current Position: 422nd of 11252, **Top 4%**
++ Clean Data
++ Feature Engineering
++ Model Evaluation
++ Model Selection
++ Feature Selection
++ Model Validation & Implementation
++ Optimize Model
 
 ## 5 Day Data Cleaning Challenge
 + Day 1: Handle Missing Values
