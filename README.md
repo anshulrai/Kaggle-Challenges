@@ -4,9 +4,9 @@
 + Exploratory Data Analysis *
 
 ## Home Credit Default Risk (Won _Bronze_ medal)
-**Private Leaderboard Score: 0.79517 (542nd/7198), Top 8%**
+Private Leaderboard Score: **0.79517 (542nd/7198), Top 8%**
 
-**Best Private Leaderboard Submission: 0.79674 (248th/7198), Top 4%**
+Best Private Leaderboard Submission: **0.79674 (248th/7198), Top 4%**
 + Exploratory Data Analysis
 + Join datasets
 + Clean Data
@@ -43,7 +43,7 @@ Final Position: 920th of 3967, **Top 24%**
 + Optimize Model *
 
 ## Planet: Understanding the Amazon from Space
-**Private Leaderboard Score: 0.92979 (73rd/938), Top 8%**
+Private Leaderboard Score: **0.92979 (73rd/938), Top 8%**
 
 ## Dog vs Cats (Kernels Edition, 2017)
 **Shared the kernel with [highest publicly available score](https://www.kaggle.com/anshulrai/using-fastai-in-kaggle-kernel)**
