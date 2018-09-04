@@ -26,6 +26,7 @@ Current Position: 293rd of 1649, **Top 18%**
 
 ## Home Credit Default Risk (Won **Bronze** medal)
 **Private Leaderboard Score: 0.79517 (542nd/7198), Top 8%**
+
 **Best Private Leaderboard Submission: 0.79674 (248th/7198), Top 4%**
 + Exploratory Data Analysis
 + Join datasets
