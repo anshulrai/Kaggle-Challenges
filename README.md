@@ -18,7 +18,7 @@ Best Private Leaderboard Submission: **0.79674 (248th/7198), Top 4%**
 + Ensembling
 
 ## Avito Demand Prediction Challenge
-Current Position: 414rd of 1873, **Top 23%**
+Final Position: 414rd of 1873, **Top 23%**
 + Baseline Notebook using SVM/Random Forests
 + Exploratory Data Analysis
 + Convert to Categorical and DateTime variables
