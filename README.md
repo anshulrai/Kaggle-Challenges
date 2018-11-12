@@ -1,12 +1,12 @@
 # Kaggle Challenges
 
 ## Quora Insincere Questions Classification *
-Current Position: 258th of 641, **Top 41%**
+Current Position: 207th of 641, **Top 33%**
 + Feature Engineering
 + Model Evaluation*
 + Model Selection*
 + Feature Selection*
-+ Hyperparamater Search*
++ Hyperparameter Search*
 + Model Validation & Implementation*
 + Optimize Model*
 
@@ -29,8 +29,12 @@ Final Position: 920th of 3967, **Top 24%**
 ## Planet: Understanding the Amazon from Space
 Private Leaderboard Score: **0.92979 (73rd/938), Top 8%**
 
+## Amazon Reviews for Sentiment Analysis
++ Shared a kernel using CuDNNLSTM with **[highest publicly available accuracy](https://www.kaggle.com/anshulrai/cudnnlstm-implementation-93-7-accuracy)**
++ Shared a kernel **[implementing QRNN](https://www.kaggle.com/anshulrai/preprocessing-qrnn-no-transfer-learning)**
+
 ## Dog vs Cats (Kernels Edition, 2017)
-**Shared the kernel with [highest publicly available score](https://www.kaggle.com/anshulrai/using-fastai-in-kaggle-kernel)**
+Shared the kernel with **[highest publicly available score](https://www.kaggle.com/anshulrai/using-fastai-in-kaggle-kernel)**
 
 ## Predict Survival on the Titanic
 Current Position: 422nd of 11252, **Top 4%**
