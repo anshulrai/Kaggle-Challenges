@@ -1,7 +1,14 @@
 # Kaggle Challenges
 
-## TGS Salt Identification Challenge *
-+ Exploratory Data Analysis *
+## Quora Insincere Questions Classification *
+Current Position: 258th of 641, **Top 41%**
++ Feature Engineering
++ Model Evaluation*
++ Model Selection*
++ Feature Selection*
++ Hyperparamater Search*
++ Model Validation & Implementation*
++ Optimize Model*
 
 ## Home Credit Default Risk (Won _Bronze_ medal)
 Private Leaderboard Score: **0.79517 (542nd/7198), Top 8%**
@@ -16,6 +23,9 @@ Best Private Leaderboard Submission: **0.79674 (248th/7198), Top 4%**
 + Train/Test Discriminator
 + Stacking
 + Ensembling
+
+## TGS Salt Identification Challenge
+Final Position: 759th of 3234, **Top 24%**
 
 ## Avito Demand Prediction Challenge
 Final Position: 414rd of 1873, **Top 23%**
