@@ -19,7 +19,7 @@ from keras import backend as K
 from keras import initializers, regularizers, constraints, optimizers
 
 # HYPERPARAMS FOR TEXT PROCESSING
-max_features = 20000
+max_features = 200000
 maxlen = 100
 
 # HYPERPARAMS FOR NN
@@ -383,7 +383,7 @@ def add_features(df, function_list):
 def dnn_model(features, embedding_weights):
     features_input = layers.Input(shape=(features.shape[1],))
     inp = layers.Input(shape=(maxlen, ))
-    x = layers.Embedding(max_features, embedding_weights.shape[1], weights=[embedding_weights], trainable=False)(inp)
+    x = layers.Embedding(embedding_weights.shape[0], embedding_weights.shape[1], weights=[embedding_weights], trainable=False)(inp)
         
     x = layers.Bidirectional(layers.CuDNNLSTM(64, kernel_initializer='glorot_normal', return_sequences = True))(x)
     x, x_h, x_c = layers.Bidirectional(layers.CuDNNGRU(64, kernel_initializer='glorot_normal', return_sequences=True, return_state = True))(x)
@@ -491,6 +491,8 @@ if __name__ == "__main__":
     
     word_index = tokenizer.word_index
     
+    nb_words = min(max_features, len(word_index)+1)
+    
     # MEAN AND STD VALUES FOR EMBEDDINGS
     emb_mean_dict = {'paragram_300_sl999':-0.005324783269315958,
                 'wiki-news-300d-1M':-0.0033469984773546457,
@@ -503,22 +505,18 @@ if __name__ == "__main__":
     for EMBEDDING_FILE in embedding_list:
         embedding_name = EMBEDDING_FILE.split('/')[3]
         print('>>\t CREATING EMBEDDINGS FOR {}!'.format(embedding_name))
-        
         emb_mean, emb_std = emb_mean_dict[embedding_name], emb_std_dict[embedding_name]
-        nb_words = min(max_features, len(word_index))
         embedding_matrix = np.random.normal(emb_mean, emb_std, (nb_words, embed_size))
-        with open(EMBEDDING_FILE, 'rb') as f:
-            for line in f:
-                word, vec = str(line).split(' ', 1)
-                if word not in word_index:
-                    continue
-                i = word_index[word]
-                if i >= max_features:
-                    continue
-                embedding_vector = np.asarray(vec.split(' '), dtype='float32')[:embed_size]
-                if len(embedding_vector) == embed_size:
-                    embedding_matrix[i] = embedding_vector
-        del nb_words
+        for o in open(EMBEDDING_FILE, encoding="utf8", errors='ignore'):
+            word, vec = o.split(' ', 1)
+            if word not in word_index:
+                continue
+            i = word_index[word]
+            if i >= nb_words:
+                continue
+            embedding_vector = np.asarray(vec.split(' '), dtype='float32')[:embed_size]
+            if len(embedding_vector) == embed_size:
+                embedding_matrix[i] = embedding_vector
         gc.collect()
         
         print('>>\t CREATING EMBEDDINGS FOR {} \t DONE!'.format(embedding_name))
