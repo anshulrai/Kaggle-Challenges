@@ -1,9 +1,9 @@
 # Kaggle Challenges
 
 ## Quora Insincere Questions Classification *
-Current Position: 684th of 2761, **Top 25%**
+Current Position: 658th of 2787, **Top 24%**
 + Feature Engineering
-+ Model Evaluatio
++ Model Evaluation
 + Model Selection*
 + Feature Selection*
 + Hyperparameter Search*
