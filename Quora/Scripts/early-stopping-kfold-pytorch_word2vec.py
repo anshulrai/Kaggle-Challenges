@@ -71,15 +71,9 @@ def clean_numbers(x):
 
 mispell_dict = {
 "tamilans" : "tamilians",
-"coinbase" : "digital currency exchange",
-"upwork" : "freelancing platform",
-"sjws" : "social justice warriors",
 "feku" : "liar",
 "quorans" : "people who use quora",
 "qoura": "quora",
-"redmi" : "phone",
-"gdpr" : "regulation",
-"oneplus" : "phone",
 "xiomi" : "phone",
 "ipill" : "contraception", # same below this
 "aren't" : "are not",
