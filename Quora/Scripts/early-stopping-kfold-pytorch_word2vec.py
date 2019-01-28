@@ -19,7 +19,7 @@ from gensim import utils
 
 ### TO DO: Don't ignore embedding < embed_size, remove newly added misspellings
 
-change_string = 'Added \u200b to punctuation\n'
+change_string = 'lower embeddings removed\n'
 
 def set_seed(seed=42):
     random.seed(seed)
@@ -275,8 +275,8 @@ train_df = pd.read_csv(PATH+'train.csv', usecols=['question_text', 'target'])
 test_df = pd.read_csv(PATH+'test.csv', usecols = ['question_text'])
 
 # 3RD PARTY CLEAN
-train_df["question_text"] = train_df["question_text"].apply(lambda x: x.lower())
-test_df["question_text"] = test_df["question_text"].apply(lambda x: x.lower())
+#train_df["question_text"] = train_df["question_text"].apply(lambda x: x.lower())
+#test_df["question_text"] = test_df["question_text"].apply(lambda x: x.lower())
 
 train_df["question_text"] = train_df["question_text"].apply(lambda x: clean_text(x))
 test_df["question_text"] = test_df["question_text"].apply(lambda x: clean_text(x))
@@ -297,7 +297,7 @@ del train_df, test_df
 gc.collect()
 
 # TOKENIZE TEXT
-tokenizer = text.Tokenizer(num_words=max_features, oov_token='OOV')
+tokenizer = text.Tokenizer(num_words=max_features, oov_token='OOV', lower=False)
 tokenizer.fit_on_texts(list(train_sentences) + list(test_sentences))
 
 tokenized_train = tokenizer.texts_to_sequences(train_sentences)
@@ -338,9 +338,7 @@ for EMBEDDING_FILE in embedding_list:
     for o in open(EMBEDDING_FILE, encoding="utf8", errors='ignore'):
         word, vec = o.split(' ', 1)
         if word not in word_index:
-            word = word.lower()
-            if word not in word_index:
-                continue
+            continue
         i = word_index[word]
         if i >= nb_words:
             continue
@@ -372,7 +370,6 @@ with utils.smart_open(word2vecpath) as fin:
                 word.append(ch)
         word = utils.to_unicode(b''.join(word), encoding='utf8', errors='strict')
         weights = np.fromstring(fin.read(binary_len), dtype=np.float32).astype(np.float32)
-        word = word.lower()
         if word not in word_index:
             continue
         i = word_index[word]
