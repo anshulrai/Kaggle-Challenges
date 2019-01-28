@@ -35,7 +35,7 @@ maxlen = 100
 # HYPERPARAMS FOR NN
 batch_size = 1024
 epochs_fixed = 4
-epochs_trainable = 2
+epochs_trainable = 1
 embed_size = 300
 early_stopping_patience = 2
 hidden_size = 60
