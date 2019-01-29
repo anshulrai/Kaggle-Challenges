@@ -1,0 +1,87 @@
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=21, tm_hour=1, tm_min=27, tm_sec=53, tm_wday=0, tm_yday=21, tm_isdst=0)
+{'threshold': 0.3634229898452759, 'f1': 0.6874588235294118}
+
+#Kaggle code locally
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=21, tm_hour=13, tm_min=46, tm_sec=49, tm_wday=0, tm_yday=21, tm_isdst=0)
+{'threshold': 0.3778288960456848, 'f1': 0.6862925802917804}
+
+#New embedding format of Kaggle code
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=21, tm_hour=14, tm_min=54, tm_sec=38, tm_wday=0, tm_yday=21, tm_isdst=0)
+{'threshold': 0.38060420751571655, 'f1': 0.687872579319605}
+
+Changed embedding creation by not dividing every word by len(embedding)
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=21, tm_hour=15, tm_min=44, tm_sec=40, tm_wday=0, tm_yday=21, tm_isdst=0)
+{'threshold': 0.38060420751571655, 'f1': 0.687872579319605}
+
+Changed seed from 42 -> 22
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=21, tm_hour=18, tm_min=15, tm_sec=27, tm_wday=0, tm_yday=21, tm_isdst=0)
+{'threshold': 0.3729017376899719, 'f1': 0.6868138934028549}
+
+Rerunning 42 seed model with embedding changes.
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=21, tm_hour=21, tm_min=36, tm_sec=3, tm_wday=0, tm_yday=21, tm_isdst=0)
+{'threshold': 0.36591261625289917, 'f1': 0.6883146659941075}
+
+Added Word2Vec embeddings for missing words ONLY. Try adding it to present words later. Also, new contractions like the previous run.
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=21, tm_hour=22, tm_min=51, tm_sec=54, tm_wday=0, tm_yday=21, tm_isdst=0)
+{'threshold': 0.39225447177886963, 'f1': 0.6877264282396656}
+
+Removed new contractions. Rest same as previous.
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=22, tm_hour=0, tm_min=17, tm_sec=36, tm_wday=1, tm_yday=22, tm_isdst=0)
+{'threshold': 0.383318156003952, 'f1': 0.688061113803688}
+
+Word2Vec with old embeddings. Check run before running pos experiments.
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=26, tm_hour=18, tm_min=39, tm_sec=9, tm_wday=5, tm_yday=26, tm_isdst=0)
+{'threshold': 0.383318156003952, 'f1': 0.688061113803688}
+
+Updated misspellings to commmon errors.
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=26, tm_hour=19, tm_min=41, tm_sec=19, tm_wday=5, tm_yday=26, tm_isdst=0)
+{'threshold': 0.3890545070171356, 'f1': 0.6882390196568334}
+
+Added lowercase checks to embeddings!
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=26, tm_hour=20, tm_min=58, tm_sec=38, tm_wday=5, tm_yday=26, tm_isdst=0)
+{'threshold': 0.37275412678718567, 'f1': 0.6857278512162217}
+
+Removed words like SJWs and Coinbase that existed in embeddings from spellings 
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=27, tm_hour=0, tm_min=53, tm_sec=38, tm_wday=6, tm_yday=27, tm_isdst=0)
+{'threshold': 0.3786667585372925, 'f1': 0.6854281607863136}
+
+Added ​ to punctuation 
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=27, tm_hour=1, tm_min=47, tm_sec=1, tm_wday=6, tm_yday=27, tm_isdst=0)
+{'threshold': 0.3669199049472809, 'f1': 0.6857574865677499}
+
+Removed lowercase conversion during preprocessing!
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=27, tm_hour=13, tm_min=53, tm_sec=37, tm_wday=6, tm_yday=27, tm_isdst=0)
+{'threshold': 0.38040247559547424, 'f1': 0.6863048198002605}
+
+Changed order of embeddings and combination of embeddings!
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=27, tm_hour=17, tm_min=6, tm_sec=38, tm_wday=6, tm_yday=27, tm_isdst=0)
+{'threshold': 0.3679611086845398, 'f1': 0.6808142906855353}
+
+Changed order of embeddings and combination of embeddings to para first!
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=28, tm_hour=3, tm_min=59, tm_sec=54, tm_wday=0, tm_yday=28, tm_isdst=0)
+{'threshold': 0.37365326285362244, 'f1': 0.6766173175970621}
+
+Changed order of embeddings and combination of embeddings to glove first!
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=28, tm_hour=12, tm_min=12, tm_sec=55, tm_wday=0, tm_yday=28, tm_isdst=0)
+{'threshold': 0.37498849630355835, 'f1': 0.6874071667285555}
+
+Changed order of embeddings and combination of embeddings to glove first and fasttext second!
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=28, tm_hour=16, tm_min=35, tm_sec=7, tm_wday=0, tm_yday=28, tm_isdst=0)
+{'threshold': 0.3636126220226288, 'f1': 0.6870089972737281}
+
+Changed order of embeddings back to glove first and paragram second and removed word2vec!
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=28, tm_hour=17, tm_min=48, tm_sec=22, tm_wday=0, tm_yday=28, tm_isdst=0)
+{'threshold': 0.3786276876926422, 'f1': 0.6870853128797966}
+
+"cleaner_embedding_submission.py" : New embedding cleaning with individual embedding creation (glove, para, fast)
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=28, tm_hour=19, tm_min=51, tm_sec=18, tm_wday=0, tm_yday=28, tm_isdst=0)
+{'threshold': 0.37517982721328735, 'f1': 0.6875249356731908}
+
+"cleaner_embedding_submission.py" : Added cleaning for unknown words.
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=28, tm_hour=20, tm_min=46, tm_sec=7, tm_wday=0, tm_yday=28, tm_isdst=0)
+{'threshold': 0.37300583720207214, 'f1': 0.6879437942352175}
+
+"highest-cv-code.py" : Init run
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=28, tm_hour=22, tm_min=26, tm_sec=27, tm_wday=0, tm_yday=28, tm_isdst=0)
+{'threshold': 0.38060420751571655, 'f1': 0.687872579319605}
+
