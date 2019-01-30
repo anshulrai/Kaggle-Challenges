@@ -19,7 +19,7 @@ from gensim import utils
 import psutil
 from multiprocessing import Pool
 
-change_string = '"highest-cv-code.py" : Added multiproc and cleaned embedding\n'
+change_string = '"highest-cv-code.py" : Added gaussian noise after concat layer.\n'
 
 def set_seed(seed=42):
     random.seed(seed)
@@ -93,10 +93,10 @@ def clean_special_punctuations(text):
 
 # clean numbers
 def clean_number(text):
-    # 字母和数字分开
-    text = re.sub(r'(\d+)([a-zA-Z])', '\g<1> \g<2>', text)
-    text = re.sub(r'(\d+) (th|st|nd|rd) ', '\g<1>\g<2> ', text)
-    text = re.sub(r'(\d+),(\d+)', '\g<1>\g<2>', text)
+    if bool(re.search(r'\d', text)):
+        text = re.sub(r'(\d+)([a-zA-Z])', '\g<1> \g<2>', text)
+        text = re.sub(r'(\d+) (th|st|nd|rd) ', '\g<1>\g<2> ', text)
+        text = re.sub(r'(\d+),(\d+)', '\g<1>\g<2>', text)
     
 #     text = re.sub('[0-9]{5,}', '#####', text)
 #     text = re.sub('[0-9]{4}', '####', text)
@@ -1232,6 +1232,17 @@ def threshold_search(y_true, y_proba):
     search_result = {'threshold': best_th, 'f1': best_score}
     return search_result
 
+class GaussianNoise(nn.Module):
+    def __init__(self, mean= 0., sigma=0.1):
+        super().__init__()
+        self._mean = mean
+        self._sigma = sigma
+
+    def forward(self, x):
+        if self.training:
+            return x + torch.autograd.Variable(torch.randn(x.size()).cuda() * self._sigma + self._mean)
+        return x
+
 class Attention(nn.Module):
     def __init__(self, feature_dim, step_dim, bias=True, **kwargs):
         super(Attention, self).__init__(**kwargs)
@@ -1281,7 +1292,8 @@ class NeuralNet(nn.Module):
         self.embedding.weight = nn.Parameter(torch.tensor(embedding_matrix, dtype=torch.float32))
         self.embedding.weight.requires_grad = False
         
-        #self.embedding_dropout = nn.Dropout2d(0.1)
+        self.noise = GaussianNoise(sigma=0.1)
+        
         self.lstm = nn.GRU(embed_size, hidden_size, bidirectional=True, batch_first=True)
         self.gru = nn.GRU(hidden_size*2, hidden_size, bidirectional=True, batch_first=True)
         
@@ -1290,7 +1302,7 @@ class NeuralNet(nn.Module):
         
         self.linear = nn.Linear(480, 16)
         self.relu = nn.ReLU()
-        #self.dropout = nn.Dropout(0.1)
+        
         self.out = nn.Linear(16, 1)
         
     def forward(self, x):
@@ -1308,6 +1320,7 @@ class NeuralNet(nn.Module):
         max_pool, _ = torch.max(h_gru, 1)
         
         conc = torch.cat((h_lstm_atten, h_gru_atten, avg_pool, max_pool), 1)
+        conc = self.noise(conc)
         conc = self.relu(self.linear(conc))
         out = self.out(conc)
         
