@@ -85,3 +85,31 @@ time.struct_time(tm_year=2019, tm_mon=1, tm_mday=28, tm_hour=20, tm_min=46, tm_s
 time.struct_time(tm_year=2019, tm_mon=1, tm_mday=28, tm_hour=22, tm_min=26, tm_sec=27, tm_wday=0, tm_yday=28, tm_isdst=0)
 {'threshold': 0.38060420751571655, 'f1': 0.687872579319605}
 
+"highest-cv-code.py" : Added multiproc and cleaned embedding
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=29, tm_hour=0, tm_min=55, tm_sec=34, tm_wday=1, tm_yday=29, tm_isdst=0)
+{'threshold': 0.4051169753074646, 'f1': 0.6886860990520067}
+
+"cleaner_embedding_submission.py" : Changed embedding matrix creation for first 3 to old method. Similar to highest-cv code but with additional word2vec unique.
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=29, tm_hour=14, tm_min=26, tm_sec=7, tm_wday=1, tm_yday=29, tm_isdst=0)
+{'threshold': 0.3760419189929962, 'f1': 0.6874848060382251}
+
+"highest-cv-code.py" : Added multiproc and cleaned embedding rerun with int cleaner.
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=29, tm_hour=15, tm_min=17, tm_sec=17, tm_wday=1, tm_yday=29, tm_isdst=0)
+{'threshold': 0.4051169753074646, 'f1': 0.6886860990520067}
+
+"cleaner_embedding_submission.py" : Removed word2vec to verify similarity to highest-cv. (This: g, p, f) (Highest: p,w,g).
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=29, tm_hour=16, tm_min=10, tm_sec=11, tm_wday=1, tm_yday=29, tm_isdst=0)
+{'threshold': 0.3771056532859802, 'f1': 0.6867344506647599}
+
+"cleaner_embedding_submission.py" : Changed embedding order from previous to match highest.(This: p, f, g) (Highest: p,f,g).
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=29, tm_hour=18, tm_min=38, tm_sec=53, tm_wday=1, tm_yday=29, tm_isdst=0)
+{'threshold': 0.3771056532859802, 'f1': 0.6867344506647599}
+
+"highest-cv-code.py" : Added gaussian noise after concat layer.
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=29, tm_hour=19, tm_min=32, tm_sec=35, tm_wday=1, tm_yday=29, tm_isdst=0)
+{'threshold': 0.35031864047050476, 'f1': 0.6877051105091035}
+
+"cleaner_embedding_submission.py" : Added cleaning for unknown words rerun.
+time.struct_time(tm_year=2019, tm_mon=1, tm_mday=29, tm_hour=21, tm_min=11, tm_sec=29, tm_wday=1, tm_yday=29, tm_isdst=0)
+{'threshold': 0.37300583720207214, 'f1': 0.6879437942352175}
+
