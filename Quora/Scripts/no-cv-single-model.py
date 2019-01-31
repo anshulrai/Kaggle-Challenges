@@ -18,7 +18,9 @@ import torch.utils.data
 import psutil
 from multiprocessing import Pool
 
-change_string = '"single_model.py" : 20 fixed, 2 train, 5 patience, 2% validation, with adaptive lr patience=2 and no noise.\n'
+### Change embedding creations
+
+change_string = '"single_model.py" : 20 fixed, 2 train, 5 patience, 2% validation, with adaptive lr patience=1 WITH noise after concat.\n'
 
 def set_seed(seed=42):
     random.seed(seed)
@@ -43,7 +45,7 @@ epochs_trainable = 2
 embed_size = 300
 early_stopping_patience = 5
 hidden_size = 60
-lr_patience = 2
+lr_patience = 1
 
 set_seed(seed)
 
@@ -1286,7 +1288,7 @@ class GRUNet(nn.Module):
         self.gru_1 = nn.GRU(embed_size, hidden_size, bidirectional=True, batch_first=True)
         self.gru_2 = nn.GRU(hidden_size*2, hidden_size, bidirectional=True, batch_first=True)
         
-        #self.noise = GaussianNoise(sigma=0.1)
+        self.noise = GaussianNoise(sigma=0.1)
         
         self.gru_1_attention = Attention(hidden_size*2, maxlen)
         self.gru_2_attention = Attention(hidden_size*2, maxlen)
@@ -1312,6 +1314,7 @@ class GRUNet(nn.Module):
         max_pool, _ = torch.max(h_gru_2, 1)
         
         conc = torch.cat((h_gru_1_atten, h_gru_2_atten, avg_pool, max_pool), 1)
+        conc = self.noise(conc)
         
         conc = self.relu(self.linear(conc))
         out = self.out(conc)
