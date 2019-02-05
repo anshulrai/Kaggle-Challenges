@@ -18,7 +18,7 @@ import torch.utils.data
 import psutil
 from multiprocessing import Pool
 
-change_string = '"early_stopping_init.py" : Reverted to highest CV and hidden size 60. \n'
+### Added test sentences from tokenizer and added noise
 
 def set_seed(seed=42):
     random.seed(seed)
@@ -58,7 +58,7 @@ def df_parallelize_run(df, func):
     return df
 
 # PATH TO DATA DIRECTORY
-PATH = "./input/"
+PATH = "../input/"
 
 puncts = {',', '.', '"', ':', ')', '(', '-', '!', '?', '|', ';', "'", '$', '&', '/', '[', ']', '>', '%', '=', '#', '*', '+', '\\', '•',  '~', '@', '£', 
  '·', '_', '{', '}', '©', '^', '®', '`',  '<', '→', '°', '€', '™', '›',  '♥', '←', '×', '§', '″', '′', 'Â', '█', '½', 'à', '…', 
@@ -176,14 +176,15 @@ def threshold_search(y_true, y_proba):
     return search_result
 
 class GaussianNoise(nn.Module):
-    def __init__(self, mean= 0., sigma=0.1):
-        super().__init__()
-        self._mean = mean
-        self._sigma = sigma
+    def __init__(self, sigma):
+        super(GaussianNoise, self).__init__()
+        self.stddev = sigma
 
     def forward(self, x):
         if self.training:
-            return x + torch.autograd.Variable(torch.randn(x.size()).cuda() * self._sigma + self._mean)
+            noise = torch.empty_like(x)
+            noise.normal_(0, self.stddev)
+            return x + noise
         return x
 
 class Attention(nn.Module):
@@ -238,7 +239,7 @@ class NeuralNet(nn.Module):
         self.lstm = nn.GRU(embed_size, hidden_size, bidirectional=True, batch_first=True)
         self.gru = nn.GRU(hidden_size*2, hidden_size, bidirectional=True, batch_first=True)
         
-        #self.noise = GaussianNoise(sigma=0.1)
+        self.noise = GaussianNoise(sigma=0.1)
         
         self.lstm_attention = Attention(hidden_size*2, maxlen)
         self.gru_attention = Attention(hidden_size*2, maxlen)
@@ -251,6 +252,7 @@ class NeuralNet(nn.Module):
     def forward(self, x):
         
         h_embedding = self.embedding(x)
+        h_embedding = self.noise(h_embedding)
         
         h_lstm, _ = self.lstm(h_embedding)
         h_gru, _ = self.gru(h_lstm)
@@ -328,7 +330,7 @@ gc.collect()
 
 # TOKENIZE TEXT
 tokenizer = text.Tokenizer(num_words=max_features, oov_token='OOV')
-tokenizer.fit_on_texts(list(train_sentences) + list(test_sentences))
+tokenizer.fit_on_texts(list(train_sentences)+list(test_sentences))
 
 tokenized_train = tokenizer.texts_to_sequences(train_sentences)
 X_train = sequence.pad_sequences(tokenized_train, maxlen=maxlen)
