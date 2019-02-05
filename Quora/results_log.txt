@@ -244,3 +244,11 @@ time.struct_time(tm_year=2019, tm_mon=2, tm_mday=5, tm_hour=1, tm_min=21, tm_sec
 time.struct_time(tm_year=2019, tm_mon=2, tm_mday=5, tm_hour=2, tm_min=18, tm_sec=11, tm_wday=1, tm_yday=36, tm_isdst=0)
 {'threshold': 0.3727074861526489, 'f1': 0.689111606182053}
 
+"early_stopping_init.py" : Removed Gaussian Noise after concat, changed std of embedding noise 0.1->0.2!
+time.struct_time(tm_year=2019, tm_mon=2, tm_mday=5, tm_hour=3, tm_min=10, tm_sec=57, tm_wday=1, tm_yday=36, tm_isdst=0)
+{'threshold': 0.3610870838165283, 'f1': 0.6885027048362007}
+
+"early_stopping_init.py" : Removed Gaussian Noise after concat, changed std of embedding noise 0.2->0.05!
+time.struct_time(tm_year=2019, tm_mon=2, tm_mday=5, tm_hour=4, tm_min=12, tm_sec=26, tm_wday=1, tm_yday=36, tm_isdst=0)
+{'threshold': 0.36497217416763306, 'f1': 0.6878625651971838}
+
