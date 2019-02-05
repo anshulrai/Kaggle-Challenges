@@ -18,7 +18,7 @@ import torch.utils.data
 import psutil
 from multiprocessing import Pool
 
-change_string = '"early_stopping_init.py" : Added Gaussian Noise to highest.\n'
+change_string = '"early_stopping_init.py" : Removed Gaussian Noise after concat, changed std of embedding noise 0.1->0.2!\n'
 
 def set_seed(seed=42):
     random.seed(seed)
@@ -239,7 +239,7 @@ class NeuralNet(nn.Module):
         self.lstm = nn.GRU(embed_size, hidden_size, bidirectional=True, batch_first=True)
         self.gru = nn.GRU(hidden_size*2, hidden_size, bidirectional=True, batch_first=True)
         
-        self.noise = GaussianNoise(sigma=0.1)
+        self.noise = GaussianNoise(sigma=0.2)
         
         self.lstm_attention = Attention(hidden_size*2, maxlen)
         self.gru_attention = Attention(hidden_size*2, maxlen)
