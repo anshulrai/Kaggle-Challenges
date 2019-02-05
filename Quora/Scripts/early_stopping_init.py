@@ -18,7 +18,7 @@ import torch.utils.data
 import psutil
 from multiprocessing import Pool
 
-change_string = '"early_stopping_init.py" : Added cyclic LR with no mods.\n'
+change_string = '"early_stopping_init.py" : Added Gaussian Noise to highest.\n'
 
 def set_seed(seed=42):
     random.seed(seed)
@@ -176,99 +176,16 @@ def threshold_search(y_true, y_proba):
     return search_result
 
 class GaussianNoise(nn.Module):
-    def __init__(self, mean= 0., sigma=0.1):
-        super().__init__()
-        self._mean = mean
-        self._sigma = sigma
+    def __init__(self, sigma):
+        super(GaussianNoise, self).__init__()
+        self.stddev = sigma
 
     def forward(self, x):
         if self.training:
-            return x + torch.autograd.Variable(torch.randn(x.size()).cuda() * self._sigma + self._mean)
+            noise = torch.empty_like(x)
+            noise.normal_(0, self.stddev)
+            return x + noise
         return x
-
-class CyclicLR(object):
-    def __init__(self, optimizer, base_lr=1e-3, max_lr=6e-3,
-                 step_size=2000, mode='triangular', gamma=1.,
-                 scale_fn=None, scale_mode='cycle', last_batch_iteration=-1):
-
-        if not isinstance(optimizer, Optimizer):
-            raise TypeError('{} is not an Optimizer'.format(
-                type(optimizer).__name__))
-        self.optimizer = optimizer
-
-        if isinstance(base_lr, list) or isinstance(base_lr, tuple):
-            if len(base_lr) != len(optimizer.param_groups):
-                raise ValueError("expected {} base_lr, got {}".format(
-                    len(optimizer.param_groups), len(base_lr)))
-            self.base_lrs = list(base_lr)
-        else:
-            self.base_lrs = [base_lr] * len(optimizer.param_groups)
-
-        if isinstance(max_lr, list) or isinstance(max_lr, tuple):
-            if len(max_lr) != len(optimizer.param_groups):
-                raise ValueError("expected {} max_lr, got {}".format(
-                    len(optimizer.param_groups), len(max_lr)))
-            self.max_lrs = list(max_lr)
-        else:
-            self.max_lrs = [max_lr] * len(optimizer.param_groups)
-
-        self.step_size = step_size
-
-        if mode not in ['triangular', 'triangular2', 'exp_range'] \
-                and scale_fn is None:
-            raise ValueError('mode is invalid and scale_fn is None')
-
-        self.mode = mode
-        self.gamma = gamma
-
-        if scale_fn is None:
-            if self.mode == 'triangular':
-                self.scale_fn = self._triangular_scale_fn
-                self.scale_mode = 'cycle'
-            elif self.mode == 'triangular2':
-                self.scale_fn = self._triangular2_scale_fn
-                self.scale_mode = 'cycle'
-            elif self.mode == 'exp_range':
-                self.scale_fn = self._exp_range_scale_fn
-                self.scale_mode = 'iterations'
-        else:
-            self.scale_fn = scale_fn
-            self.scale_mode = scale_mode
-
-        self.batch_step(last_batch_iteration + 1)
-        self.last_batch_iteration = last_batch_iteration
-
-    def batch_step(self, batch_iteration=None):
-        if batch_iteration is None:
-            batch_iteration = self.last_batch_iteration + 1
-        self.last_batch_iteration = batch_iteration
-        for param_group, lr in zip(self.optimizer.param_groups, self.get_lr()):
-            param_group['lr'] = lr
-
-    def _triangular_scale_fn(self, x):
-        return 1.
-
-    def _triangular2_scale_fn(self, x):
-        return 1 / (2. ** (x - 1))
-
-    def _exp_range_scale_fn(self, x):
-        return self.gamma**(x)
-
-    def get_lr(self):
-        step_size = float(self.step_size)
-        cycle = np.floor(1 + self.last_batch_iteration / (2 * step_size))
-        x = np.abs(self.last_batch_iteration / step_size - 2 * cycle + 1)
-
-        lrs = []
-        param_lrs = zip(self.optimizer.param_groups, self.base_lrs, self.max_lrs)
-        for param_group, base_lr, max_lr in param_lrs:
-            base_height = (max_lr - base_lr) * np.maximum(0, (1 - x))
-            if self.scale_mode == 'cycle':
-                lr = base_lr + base_height * self.scale_fn(cycle)
-            else:
-                lr = base_lr + base_height * self.scale_fn(self.last_batch_iteration)
-            lrs.append(lr)
-        return lrs
     
 class Attention(nn.Module):
     def __init__(self, feature_dim, step_dim, bias=True, **kwargs):
@@ -322,7 +239,7 @@ class NeuralNet(nn.Module):
         self.lstm = nn.GRU(embed_size, hidden_size, bidirectional=True, batch_first=True)
         self.gru = nn.GRU(hidden_size*2, hidden_size, bidirectional=True, batch_first=True)
         
-        #self.noise = GaussianNoise(sigma=0.1)
+        self.noise = GaussianNoise(sigma=0.1)
         
         self.lstm_attention = Attention(hidden_size*2, maxlen)
         self.gru_attention = Attention(hidden_size*2, maxlen)
@@ -335,6 +252,7 @@ class NeuralNet(nn.Module):
     def forward(self, x):
         
         h_embedding = self.embedding(x)
+        h_embedding = self.noise(h_embedding)
         
         h_lstm, _ = self.lstm(h_embedding)
         h_gru, _ = self.gru(h_lstm)
@@ -493,10 +411,8 @@ for i, (train_idx, valid_idx) in enumerate(splits):
     model = NeuralNet(embedding_matrix)
     model.cuda()
 
-    loss_fn = torch.nn.BCEWithLogitsLoss(reduction="mean")
+    loss_fn = torch.nn.BCEWithLogitsLoss(reduction="sum")
     optimizer = torch.optim.Adam(model.parameters())
-    
-    scheduler = CyclicLR(optimizer)
 
     train = torch.utils.data.TensorDataset(train_x, train_y)
     valid = torch.utils.data.TensorDataset(valid_x, valid_y)
@@ -515,8 +431,6 @@ for i, (train_idx, valid_idx) in enumerate(splits):
         avg_loss = 0.
         for x_batch, y_batch in tqdm(train_loader, disable=True):
             y_pred = model(x_batch)
-            if scheduler:
-                scheduler.batch_step()
             loss = loss_fn(y_pred, y_batch)
             optimizer.zero_grad()
             loss.backward()
@@ -547,8 +461,6 @@ for i, (train_idx, valid_idx) in enumerate(splits):
         avg_loss = 0.
         for x_batch, y_batch in tqdm(train_loader, disable=True):
             y_pred = model(x_batch)
-            if scheduler:
-                scheduler.batch_step()
             loss = loss_fn(y_pred, y_batch)
             optimizer.zero_grad()
             loss.backward()
