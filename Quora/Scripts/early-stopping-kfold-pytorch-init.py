@@ -16,6 +16,8 @@ import torch
 import torch.nn as nn
 import torch.utils.data
 
+log = 'Running Highest CV model with new spelling corrections!'
+
 def set_seed(seed=42):
     random.seed(seed)
     os.environ['PYTHONHASHSEED'] = str(seed)
@@ -64,7 +66,20 @@ def clean_numbers(x):
         x = re.sub('[0-9]{2}', '##', x)
     return x
 
-mispell_dict = {"aren't" : "are not",
+mispell_dict = {
+"tamilans" : "tamilians",
+"coinbase" : "digital currency exchange",
+"upwork" : "freelancing platform",
+"sjws" : "social justice warriors",
+"feku" : "liar",
+"quorans" : "people who use quora",
+"qoura": "quora",
+"redmi" : "phone",
+"gdpr" : "regulation",
+"oneplus" : "phone",
+"xiomi" : "phone",
+"ipill" : "contraception", # same below this
+"aren't" : "are not",
 "can't" : "cannot",
 "couldn't" : "could not",
 "didn't" : "did not",
@@ -76,14 +91,14 @@ mispell_dict = {"aren't" : "are not",
 "he'd" : "he would",
 "he'll" : "he will",
 "he's" : "he is",
-"i'd" : "I would",
-"i'd" : "I had",
-"i'll" : "I will",
-"i'm" : "I am",
+"i'd" : "i would",
+"i'd" : "i had",
+"i'll" : "i will",
+"i'm" : "i am",
 "isn't" : "is not",
 "it's" : "it is",
 "it'll":"it will",
-"i've" : "I have",
+"i've" : "i have",
 "let's" : "let us",
 "mightn't" : "might not",
 "mustn't" : "must not",
@@ -120,7 +135,7 @@ mispell_dict = {"aren't" : "are not",
 "you've" : "you have",
 "'re": " are",
 "wasn't": "was not",
-"we'll":" will",
+"we'll":" we will",
 "didn't": "did not",
 "tryin'":"trying"}
 
