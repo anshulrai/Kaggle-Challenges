@@ -1,14 +1,9 @@
 # Kaggle Challenges
 
-## Quora Insincere Questions Classification *
-Current Position: 658th of 2787, **Top 24%**
-+ Feature Engineering
-+ Model Evaluation
-+ Model Selection*
-+ Feature Selection*
-+ Hyperparameter Search*
-+ Model Validation & Implementation*
-+ Optimize Model*
+## Quora Insincere Questions Classification (Results on Feb 27th)
+Public Leaderboard Score: **0.696 (1411th/4037), Top 35%**
+
+Private Leaderboard Score: **TBD**
 
 ## Home Credit Default Risk (Won _Bronze_ medal)
 Private Leaderboard Score: **0.79517 (542nd/7198), Top 8%**
