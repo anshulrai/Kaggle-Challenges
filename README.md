@@ -1,9 +1,7 @@
 # Kaggle Challenges
 
-## Quora Insincere Questions Classification (Results on Feb 27th)
-Public Leaderboard Score: **0.696 (1411th/4037), Top 35%**
-
-Private Leaderboard Score: **TBD**
+## Quora Insincere Questions Classification
+Final Position: 824th of 4037, **Top 21%**
 
 ## Home Credit Default Risk (Won _Bronze_ medal)
 Private Leaderboard Score: **0.79517 (542nd/7198), Top 8%**
@@ -14,7 +12,7 @@ Best Private Leaderboard Submission: **0.79674 (248th/7198), Top 4%**
 Final Position: 759th of 3234, **Top 24%**
 
 ## Avito Demand Prediction Challenge
-Final Position: 414rd of 1873, **Top 23%**
+Final Position: 414th of 1873, **Top 23%**
 
 ## TalkingData AdTracking Fraud Detection Challenge
 Final Position: 920th of 3967, **Top 24%**
