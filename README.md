@@ -1,7 +1,7 @@
 # Kaggle Challenges
 
-## Santander Customer Transaction Prediction *
-Current Position: 41th of 1311, **Top 4%**
+## Santander Customer Transaction Prediction (Won _Silver_ medal)
+Final Position: 413th of 8802, **Top 5%**
 
 ## Quora Insincere Questions Classification
 Final Position: 824th of 4037, **Top 21%**
