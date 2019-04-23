@@ -14,7 +14,6 @@ from sklearn.preprocessing import StandardScaler
 import datetime
 
 num_folds = 5
-SEED = 42
 windows_flag = False
 
 print("Running on Windows!\n") if windows_flag else print("Running on Linux!\n")
@@ -45,6 +44,7 @@ def count_features(train_df, test_df):
         test_df[col+"_count"] = test_df[col].map(col_count_dict)
     return train_df, test_df
 
+
 def main():
     print('Load Train Data.')
     train_df = pd.read_csv('./input/train.csv')
@@ -52,7 +52,7 @@ def main():
     print('\nShape of Train Data: {}\t Shape of Test Data: {}'
         .format(train_df.shape, test_df.shape))
     
-    train_labels = train_df['target']
+    train_labels = np.array(train_df['target'])
     train_index = np.array(train_df.index)
 
     train_df.drop(['ID_code', 'target'], axis=1, inplace=True)
@@ -65,21 +65,35 @@ def main():
     feature_importance = pd.DataFrame()
     
     skf = StratifiedKFold(n_splits=num_folds, shuffle=True, random_state=42)
-    optimal_params = np.load("./output/misc/lgb_optimal_parameters.npy").item()
-    optimal_scores = np.load("./output/misc/lgb_optimal_scores.npy").item()
-
+    
     print('\nTraining model')
     for counter, ids in enumerate(skf.split(train_index, train_labels)):
         print('\nFold {}'.format(counter+1))
-        X_train, y_train = train_df.loc[ids[0],:], train_labels.loc[ids[0]]
-        X_val, y_val = train_df.loc[ids[1], :], train_labels.loc[ids[1]]
+        X_train, y_train = train_df.values[ids[0]], train_labels[ids[0]]
+        X_val, y_val = train_df.values[ids[1]], train_labels[ids[1]]
 
         train_data = lgb.Dataset(X_train, label=y_train, free_raw_data=False)
         valid_data = lgb.Dataset(X_val, label=y_val, free_raw_data=False)
 
-        params = optimal_params[counter]
+        params = {
+        'n_estimators':99999,
+        "objective" : "binary",
+        "metric" : "auc",
+        "max_depth" : -1,
+        "num_leaves" : 13,
+        "learning_rate" : 0.01,
+        "bagging_freq": 5,
+        "bagging_fraction" : 0.4,
+        "feature_fraction" : 0.05,
+        "min_data_in_leaf": 80,
+        "min_sum_hessian_in_leaf": 10,
+        "boost_from_average": "false",
+        "bagging_seed" : 42,
+        "verbosity" : 1,
+        "seed": 42
+        }
     
-        model = lgb.train(params,train_data, valid_sets=valid_data, verbose_eval=500, early_stopping_rounds=500)
+        model = lgb.train(params,train_data, valid_sets=valid_data, verbose_eval=5000, early_stopping_rounds=500)
                     
         fold_val_preds = model.predict(X_val, num_iteration=model.best_iteration)
         test_preds += model.predict(test_df, num_iteration=model.best_iteration)/num_folds
@@ -87,14 +101,11 @@ def main():
         oof_preds[ids[1]] += fold_val_preds
 
         fold_importance = pd.DataFrame()
-        fold_importance["feature"] = [feature for feature in X_train.columns]
+        fold_importance["feature"] = [feature for feature in train_df.columns]
         fold_importance["importance"] = model.feature_importance()
 
         feature_importance = pd.concat([feature_importance, fold_importance])
 
-        fold_auc  = roc_auc_score(y_val, fold_val_preds)
-        print("Fold AUC: {}\tOptimal AUC: {}".format(fold_auc, optimal_scores[counter]))
-            
         del X_train, X_val, y_train, y_val
         gc.collect()
 
@@ -116,7 +127,7 @@ def main():
     submission.to_csv('./submissions/{}_{}.csv'.format(file_name,auc), index=False)
 
 if __name__ == "__main__":
-    change_log = "Newest optimal hyperparams with count magic."
+    change_log = "Scaling features"
     start_time = str(datetime.datetime.now().time()).split('.')[0]
 
     begin_time = time.time()
